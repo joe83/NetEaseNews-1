@@ -49,3 +49,7 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 # npm i vue-axios -S
 ```
+
+## 项目效果图
+
+![163news.gif](./static/img/163news.gif)

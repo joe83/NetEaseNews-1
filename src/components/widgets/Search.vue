@@ -10,7 +10,7 @@
         </div>
         <div class="txt" @click="sendMsg">搜索</div>
       </div>
-      <div class="searchContent">
+      <div class="searchContent" ref="scroll">
         <ul>
           <div class="hotSearch" v-show="showHot">
             <div class="title border-1px">热门搜索</div>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+  import BScroll from 'better-scroll'
+
   export default {
     created() {
       this.axios.get('https://www.apiopen.top/journalismApi')
@@ -39,6 +41,9 @@
             // console.log(this.list.auto[0].title)
             // console.log(this.list)
           }
+          this.scroll = new BScroll(this.$refs.scroll, {
+            click: true
+          })
         })
     },
     data() {
@@ -87,6 +92,8 @@
         }
       },
       toNewsDetail(params) {
+        this.searchVal = ''
+        this.showHot = true
         this.$emit('emit-search')
         this.$router.push({name: 'NewsDetail', params})
       },
@@ -170,6 +177,7 @@
       bottom: 0
       right: 0
       margin: 0 12px 0 12px
+      overflow: hidden
       .tit
         display: block
         padding: 12px 0 12px 34px
